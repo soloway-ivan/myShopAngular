@@ -6,7 +6,7 @@ export default async function assetHandler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const clothes = await prisma.clothe.findMany()
+        const clothes = await prisma.clothes.findMany()
         res.status(200).json(clothes)
       } catch (e) {
         console.error('Request error', e)

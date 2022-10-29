@@ -16,3 +16,13 @@ model Star {
   name            String    @db.VarChar(255)
   constellation   String    @db.VarChar(255)
 }
+
+model Clothes {
+  id              Int       @default(autoincrement()) @id
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  title           String    @db.VarChar(255)
+  description     String    @db.VarChar(255)
+  img             String    @db.VarChar(255)
+  prize           String    @db.VarChar(255)
+}

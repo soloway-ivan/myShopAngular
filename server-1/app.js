@@ -18,15 +18,14 @@ let query="SELECT * FROM users";
 
 conn.connect(function (err) {
     if (err) {
-        return console.error("Ошибка: " + err), res.send('Error');
+        return console.error("Ошибка: " + err);
     }
     else {
-        console.log("Подключение к серверу MySQL успешно установлено"), res.send('Succesfuly!');
+        console.log("Подключение к серверу MySQL успешно установлено");
     }
       conn.query(query, (err, result, field) =>{
         console.log(err);
         console.log(result);
-        res.send('From connection')
 });
   });
 
@@ -54,10 +53,10 @@ conn.connect(function (err) {
 
 app.get('/users', (req, res) => {
   res.send('Hi, Noda works!')
-  conn.query(query, (err, result, field) =>{
-    console.log(err);
-    console.log(result)
-  })
+    conn.query(query, (err, result, field) =>{
+      console.log(err);
+      console.log(result, 'from get');
+  });
 });
 
 // detect(port)

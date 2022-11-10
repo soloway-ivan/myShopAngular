@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "my-shop",
+    "builds": [
+       { "src": "./server-1/app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/app.js" }
+    ]
+ }

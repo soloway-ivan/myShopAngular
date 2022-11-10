@@ -1,6 +1,7 @@
 const { Client } = require('pg')
 const http = require('http');
 const url = require('url');
+const detect = require('detect-port');
 const express = require('express')
 const app = express()
 
@@ -17,13 +18,17 @@ let query="SELECT * FROM users";
 
 conn.connect(function (err) {
     if (err) {
-        return console.error("Ошибка: " + err);
+        return console.error("Ошибка: " + err), res.send('Error');
     }
     else {
-        console.log("Подключение к серверу MySQL успешно установлено");
+        console.log("Подключение к серверу MySQL успешно установлено"), res.send('Succesfuly!');
     }
+      conn.query(query, (err, result, field) =>{
+        console.log(err);
+        console.log(result);
+        res.send('From connection')
+});
   });
-
 
 //   conn.query(query, (err, result, field) =>{
 //     console.log(err);
@@ -55,13 +60,17 @@ app.get('/users', (req, res) => {
   })
 });
 
-// client.end(function (err) {
-//   if (err) {
-//       return console.error("Ошибка: " + err);
-//   }
-//   else {
-//       console.log("Off");
-//   }
-// });
+// detect(port)
+//   .then(_port => {
+//     if (port == _port) {
+//       console.log(`port: ${port} was not occupied`);
+//     } else {
+//       console.log(`port: ${port} was occupied, try port: ${_port}`);
+//     }
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
-app.listen('my-shop-angular-one.vercel.app')
+// app.listen('my-shop-angular-one.vercel.app')
+app.listen(4200)

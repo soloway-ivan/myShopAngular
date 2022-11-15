@@ -1,12 +1,16 @@
 {
   "name": "my-shop-angular",
   "version": "0.0.0",
+  "engines": {
+    "node": "14x"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve, node index.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "concurrently \"node ./server-1/app.js\" \"ng serve\""
   },
   "private": true,
   "dependencies": {
@@ -20,6 +24,8 @@
     "@angular/router": "^14.2.0",
     "@schematics/angular": "^14.2.7",
     "detect-port": "^1.5.1",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

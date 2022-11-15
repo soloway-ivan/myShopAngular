@@ -6,7 +6,7 @@ const express = require('express')
 const app = express()
 
 const router = express.Router();
-const PORT = process.env.PORT || 4200;
+const PORT = "my-shop-angular-one.vercel.app";
 
 const conn = new Client({
   host: "mouse.db.elephantsql.com",

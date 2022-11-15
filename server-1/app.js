@@ -61,6 +61,7 @@ app.get('/users', (req, res) => {
       message: 'Get data - OK',
       result: result.rows[0]
     });
+    console.log('wow');
   } catch (error) {
     console.error(error);
     return res.status(500).send('Server')

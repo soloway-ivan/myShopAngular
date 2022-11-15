@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve, node index.js",
-    "build": "ng build",
+    "build": "concurrently \"node ./server-1/app.js\" \"ng serve\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "concurrently \"node ./server-1/app.js\" \"ng serve\""
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@schematics/angular": "^14.2.7",
+    "concurrently": "^7.5.0",
     "detect-port": "^1.5.1",
     "express": "^4.18.2",
     "moment": "^2.29.4",

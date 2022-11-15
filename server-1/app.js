@@ -5,6 +5,8 @@ const detect = require('detect-port');
 const express = require('express')
 const app = express()
 
+const router = express.Router();
+const PORT = process.env.PORT || 4200;
 
 const conn = new Client({
   host: "mouse.db.elephantsql.com",
@@ -14,8 +16,7 @@ const conn = new Client({
   port: "5432"
 })
 
-let query="SELECT * FROM users";
-
+let query="SELECT personid, firstname, lastname, city FROM users WHERE personid = 1;";
 conn.connect(function (err) {
     if (err) {
         return console.error("Ошибка: " + err);
@@ -26,8 +27,9 @@ conn.connect(function (err) {
       conn.query(query, (err, result, field) =>{
         console.log(err);
         console.log(result);
-});
+    });
   });
+
 
 //   conn.query(query, (err, result, field) =>{
 //     console.log(err);
@@ -52,12 +54,20 @@ conn.connect(function (err) {
 // }).listen(4200);
 
 app.get('/users', (req, res) => {
-  res.send('Hi, Noda works!')
-    conn.query(query, (err, result, field) =>{
-      console.log(err);
-      console.log(result, 'from get');
-  });
-});
+  conn.query(query, (err, result, field) =>{
+  try {
+    res.json({
+      status: 200,
+      message: 'Get data - OK',
+      result: result.rows[0]
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Server')
+  }
+})
+})
+
 
 // detect(port)
 //   .then(_port => {
@@ -70,6 +80,6 @@ app.get('/users', (req, res) => {
 //   .catch(err => {
 //     console.log(err);
 //   });
-
-app.listen('my-shop-angular-one.vercel.app')
-// app.listen(4200)
+module.exports = router;
+// app.listen('my-shop-angular-one.vercel.app')
+app.listen(PORT, () => console.log(`Server is fine! ${PORT}`));

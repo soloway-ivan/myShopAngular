@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve, node index.js",
-    "build": "concurrently \"node ./server-1/app.js\" \"ng build\"",
+    "build": "\"ng build\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "concurrently \"node ./server-1/app.js\" \"ng serve\""
